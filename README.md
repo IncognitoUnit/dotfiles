@@ -12,5 +12,5 @@ rofi
 alacritty
 fish
 picom
-nerd-fonts-terminus
+ttf-font-awesome
 ```
