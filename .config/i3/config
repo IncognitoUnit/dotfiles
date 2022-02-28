@@ -247,9 +247,9 @@ mode "resize" {
 }
 
 # color pallete
-set $bg-color				#2f343f
+set $bg-color			#2f343f
 set $bg-inactive-color		#1f242f
-set $text-color				#f3f4f5
+set $text-color			#f3f4f5
 set $text-inactive-color	#676e7d
 set $bg-urgent-color		#e53935
 set $indicator-color		#7777ff

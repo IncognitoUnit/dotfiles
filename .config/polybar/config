@@ -27,6 +27,24 @@ primary = #7777ff
 secondary = #e60053
 alert = #bd2c40
 
+;black = #3B4252
+;green = #A3BE8C
+;red = #BF616A
+;yellow = #EBCB8B
+;blue = #81A1C1
+;magenta = #B48EAD
+;cyan = #88C0D0
+;white = #E5E9F0
+
+black = #4C566A
+red = #BF616A
+green = #A3BE8C
+yellow = #EBCB8B
+blue = #81A1C1
+magenta = #B48EAD
+cyan = #8FBCBB
+white = #ECEFF4
+
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -54,9 +72,9 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=18:antialias=false;2
 font-2 = siji:pixelsize=14;1
-font-3 = Font Awesome 5 Free:pixelsize=14;1
-font-4 = Font Awesome 5 Free Solid:pixelsize=14;1
-font-5 = Font Awesome 5 Brands:pixelsize=14;1
+font-3 = Font Awesome 6 Free:pixelsize=12;1
+font-4 = Font Awesome 6 Free Solid:pixelsize=12;1
+font-5 = Font Awesome 6 Brands:pixelsize=12;1
 
 modules-left = i3
 modules-center = xwindow
@@ -92,15 +110,15 @@ blacklist-0 = num lock
 
 format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.magenta}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.magenta}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.magenta}
+label-indicator-underline = ${colors.magenta}
 
 [module/filesystem]
 type = internal/fs
@@ -198,7 +216,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ${colors.red}
 label = %percentage:2%%
 
 [module/memory]
@@ -206,7 +224,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ${colors.green}
 label = %percentage_used%%
 
 [module/wlan]
@@ -259,7 +277,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ${colors.blue}
 
 label =  %date% %time%
 
@@ -326,7 +344,7 @@ full-at = 98
 poll-interval = 60
 
 format-charging = <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.yellow}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
