@@ -3,5 +3,7 @@ if status is-interactive
 end
 
 alias ssht="TERM=xterm-256color ssh"
+alias ll="ls -alh"
+alias la="ls -a"
 
 set fish_greeting

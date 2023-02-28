@@ -13,4 +13,5 @@ alacritty
 fish
 picom
 ttf-font-awesome
+libinput-gestures
 ```
