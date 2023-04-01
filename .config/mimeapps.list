@@ -4,6 +4,7 @@ x-scheme-handler/https=chromium.desktop
 x-scheme-handler/ftp=chromium.desktop
 x-scheme-handler/chrome=chromium.desktop
 text/html=chrome.desktop
+inode/directory=pcmanfm.desktop;
 application/x-extension-htm=chromium.desktop
 application/x-extension-html=chromium.desktop
 application/x-extension-shtml=chromium.desktop
@@ -29,6 +30,7 @@ text/calendar=userapp-Thunderbird-OLY101.desktop
 application/x-extension-ics=userapp-Thunderbird-OLY101.desktop
 x-scheme-handler/webcals=userapp-Thunderbird-OLY101.desktop
 x-scheme-handler/discord-712264497787568171=discord-712264497787568171.desktop
+x-scheme-handler/clickup=ClickUp.desktop
 
 [Added Associations]
 x-scheme-handler/http=chromium.desktop;

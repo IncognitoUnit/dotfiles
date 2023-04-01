@@ -11,6 +11,31 @@
 
 set $mod Mod4
 
+### Looks
+# set border width, pixel for hiding title bar
+default_border pixel 2
+default_floating_border pixel 2
+for_window [class="^.*"] border pixel 2
+
+# Gaps
+gaps inner 8
+gaps outer 0
+
+# Color pallete
+set $bg-color				#2f343f
+set $bg-inactive-color		#1f242f
+set $text-color				#f3f4f5
+set $text-inactive-color	#676e7d
+set $bg-urgent-color		#e53935
+set $indicator-color		#7777ff
+
+# Window colors
+# class					border				background			text					indicator
+client.focused			$bg-color			$bg-color			$text-color				$indicator-color
+client.unfocused		$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
+client.focused_inactive	$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
+client.urgent			$bg-urgent-color	$bg-urgent-color	$text-color				$indicator-color
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:TerminessTTF Nerd Font 16
@@ -23,11 +48,6 @@ font pango:fixed 10
 # hide direction bar, both vertical and horizontal
 #hide_edge_borders both
 
-# set border width, pixel for hiding title bar
-default_border pixel 3
-default_floating_border pixel 3
-for_window [class="^.*"] border pixel 3
-
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -36,14 +56,14 @@ for_window [class="^.*"] border pixel 3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # switch keyboard
-exec setxkbmap "us,ru" ",winkeys" "grp:alt_shift_toggle,grp_led:scroll"
+exec setxkbmap "us,ru" ",winkeys" "grp:alt_shift_toggle"
 
 # sound
 #exec --no-startup-id volumeicon
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-exec --no-startup-id start-pulseaudio-x11
-exec --no-startup-id pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
+#exec --no-startup-id start-pulseaudio-x11
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% 
@@ -67,6 +87,9 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec alacritty
+
+# Start file manager
+bindsym $mod+E exec pcmanfm
 
 # kill focused window
 bindsym $mod+q kill
@@ -134,6 +157,13 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+z focus child
 
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show the next scratchpad window or hide the focused scratchpad window.
+# if there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -174,34 +204,90 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # assign programs to workspaces
 assign [class="firefox"] $ws1
 
-# Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="Xfburn"] floating enable
-for_window [class="Steam" title="Steam - News"] floating enable border normal
-for_window [class="Steam" title="Friends List"] floating enable border normal
+### Open specific applications in floating mode
+for_window [window_role = "pop-up"] floating enable
+for_window [window_role = "bubble"] floating enable
+for_window [window_role = "dialog"] floating enable
+for_window [window_type = "dialog"] floating enable
+for_window [window_role = "task_dialog"] floating enable
+for_window [window_type = "menu"] floating enable
+for_window [app_id = "floating"] floating enable
+for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
+for_window [class = "(?i)pinentry"] floating enable
+for_window [app_id = "Yad"] floating enable
+for_window [app_id = "yad"] floating enable
+for_window [title = ".*kdbx - KeePass"] floating enable, resize set 1276px 814px
+for_window [class = "KeePass2"] floating enable
+for_window [class = "KeyStore Explorer"] floating enable
+for_window [app_id = "virt-manager"] floating enable
+for_window [app_id = "xfce-polkit"] floating enable
+for_window [instance = "origin.exe"] floating enable
+for_window [title = "About Mozilla Firefox"] floating enable
+for_window [window_role = "About"] floating enable
+# Kill Firefox sharing indicator. It opens as an own container. Does not kill functionality
+for_window [title = "Firefox - Sharing Indicator"] kill
+for_window [title = "Firefox — Sharing Indicator"] kill
+for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
+for_window [app_id = "pavucontrol"] floating enable
+for_window [app_id = "blueberry.py"] floating enable
+#for_window [title = "Thunderbird Preferences"] floating enable
+#for_window [name = "*Reminder"] floating enable
+for_window [title = "Manage KeeAgent.*"] floating enable
+for_window [title = "Page Info - .*"] floating enable
+for_window [class = "ConkyKeyboard"] floating enable
+for_window [class = "Gufw.py"] floating enable
+for_window [app_id = "keepassxc"] floating enable, resize set 1276px 814px
+for_window [title = "^Open File$"] floating enable
+for_window [class = "^zoom$"] floating enable
+for_window [app_id = "avizo-service"] border pixel 0, sticky toggle
+no_focus [app_id="avizo-service"]
+for_window [window_role = "GtkFileChooserDialog"] resize set 590 340
+for_window [window_role = "GtkFiileChooserDialog"] move position center
+for_window [app_id = "tlp-ui"] floating enable
+for_window [title = "mpvfloat"] floating enable
+for_window [title = ".*Kee - Mozilla Firefox"] floating enable
+for_window [app_id = "nm-openconnect-auth-dialog"] floating enable
+for_window [class = "davmail-DavGateway"] floating enable
+for_window [title = "Open Database File"] floating enable
+for_window [app_id = "evolution-alarm-notify"] floating enable
+for_window [app_id = "org.gnome.Calculator"] floating enable
+for_window [title = "TeamSpeak 3"] floating enable
+for_window [app_id="(?i)Thunderbird" title=".*Reminder"] floating enable
+for_window [class = "ATLauncher"] floating enable
+for_window [app_id="pamac-manager"] floating enable
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [title="nmtui"] floating enable
+for_window [title="Save File"] floating enable
+for_window [app_id="wdisplays"] floating enable
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
+for_window [app_id = "qt5ct"] floating enable
+for_window [app_id = "gnome-tweaks"] floating enable
+for_window [class = "Bluetooth-sendto" instance = "bluetooth-sendto"] floating enable
+for_window [window_role = "Preferences"] floating enable
+for_window [title = "Picture in picture"] floating enable, sticky enable
+for_window [app_id = "flameshot"] floating enable
+for_window [title = "Firefox - Choose User Profile" ] floating enable
+for_window [class = "yad"] floating enable
+for_window [app_id = "wdisplays"] resize set width 1150px height 480px
+for_window [app_id = "nwg-look"] floating enable, resize set width 580px height 480px
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks|nwg-shell-config)"] floating enable
+for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
+for_window [class="(?i)(?:lxappearance)"] floating enable
+for_window [app_id="(?i)(?:firefox|chromium)"] border none
+for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
+# Steam
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
 
 # next/previous workspace
 bindsym $mod+Tab workspace next
@@ -247,21 +333,6 @@ mode "resize" {
 	bindsym $mod+r mode "default"
 }
 
-# color pallete
-set $bg-color			#2f343f
-set $bg-inactive-color		#1f242f
-set $text-color			#f3f4f5
-set $text-inactive-color	#676e7d
-set $bg-urgent-color		#e53935
-set $indicator-color		#7777ff
-
-# window colors
-# class					border				background			text					indicator
-client.focused			$bg-color			$bg-color			$text-color				$indicator-color
-client.unfocused		$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
-client.focused_inactive	$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
-client.urgent			$bg-urgent-color	$bg-urgent-color	$text-color				$indicator-color
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar {
@@ -290,10 +361,6 @@ bindsym $mod+Shift+q exec i3lock --color=#00000000 --blur=5 --clock --indicator 
 		--date-color=$text-color --time-color=$text-color --line-uses-inside \
 		--inside-color=$lock-color --insidever-color=$lock-color --insidewrong-color=$lock-color \
 		--verif-text="" --wrong-text="" --noinput-text=""
-
-# gaps
-gaps inner 10
-gaps outer 0
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -334,12 +401,11 @@ mode "$mode_gaps_outer" {
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1
 exec --no-startup-id picom -f
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
+#exec --no-startup-id pipewire
 exec_always --no-startup-id libinput-gestures-setup start
-exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id ~/.config/polybar/launch.sh

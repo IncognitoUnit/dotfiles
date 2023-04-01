@@ -1,17 +1,32 @@
-## Some info
-
-The dotfiles for my i3wm (i3-gaps) setup
-
-## Dependencies
+# Dependencies
 
 ```sh
-i3-gaps
-i3lock-color
-polybar
 rofi
 alacritty
 fish
-picom
 ttf-font-awesome
 libinput-gestures
+arc-gtk-theme
+arc-icon-theme
+kvantummanager
+qt5ct
+qt6ct
+```
+
+## i3wm
+
+```sh
+i3wm
+i3lock-color
+polybar
+picom
+```
+
+## sway
+
+```sh
+sway
+swayidle
+swaybg
+waybar
 ```

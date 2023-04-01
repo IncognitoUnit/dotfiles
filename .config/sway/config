@@ -1,0 +1,427 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Looks
+
+# Gaps
+gaps inner 8
+gaps outer 0
+
+# Set border width, pixel for hiding title bar
+default_border pixel 2
+default_floating_border pixel 2
+for_window [class="^.*"] border pixel 2
+
+include ~/.cache/wal/colors-sway
+# class                 border      backgr.     text        indicator   child_border
+client.focused 			$color6 	$background $foreground $color3		$color6
+client.focused_inactive $color3 	$background $foreground $color2		$color3
+client.unfocused 		$color2 	$background $color1		$color6		$color2
+client.urgent 			$foreground $background $color7 	$foreground $foreground
+
+# class                   border       backgr.      text         indicator    child_border
+#client.focused            $color1      $background  $foreground  $color6      $color1
+#client.focused_inactive   $background  $background  $foreground  $color3      $backgroud
+#client.unfocused          $background  $background  $foreground  $color3      $backgroud
+#client.urgent             $background  $background  $color7      $foreground  $foreground
+
+# Color pallete
+#set $bg-color				#2f343f
+#set $bg-inactive-color		#1f242f
+#set $text-color				#f3f4f5
+#set $text-inactive-color	#676e7d
+#set $bg-urgent-color		#e53935
+#set $indicator-color		#7777ff
+
+# Window colors
+# class					border				background			text					indicator
+#client.focused			$bg-color			$bg-color			$text-color				$indicator-color
+#client.unfocused		$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
+#client.focused_inactive	$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
+#client.urgent			$bg-urgent-color	$bg-urgent-color	$text-color				$indicator-color
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+set $alt Mod1
+
+# Language-agnostic binds
+set $bindsymlang bindsym --to-code
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term alacritty
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+#set $menu rofi - | xargs swaymsg exec --
+# Start your launcher
+$bindsymlang $mod+d exec rofi -show run -lines 15 -theme "Arc-Dark"
+$bindsymlang $mod+Shift+d exec rofi -show drun -lines 15 -theme "Arc-Dark" -show-icons
+
+
+# Screenshots
+$bindsymlang $mod+Print exec --no-startup-id flameshot gui
+#$bindsymlang $mod+Print exec --no-startup-id swappy
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+output eDP-1 {
+	background ~/wallpaper.png fill
+	resolution 1920x1080
+}
+
+### Idle configuration
+#
+# Example configuration:
+#
+exec swayidle -w \
+          timeout 300 'swaylock -f -c 000000' \
+          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+          before-sleep 'swaylock -f -c 000000'
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+# Sound
+#exec --no-startup-id start-pulseaudio-x11
+#exec --no-startup-id pa-applet
+$bindsymlang $mod+Ctrl+m exec pavucontrol
+
+# Use pactl to adjust volume in PulseAudio.
+$bindsymlang --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% 
+$bindsymlang --locked XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+$bindsymlang --locked --release XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+$bindsymlang --locked --release XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Media player controls
+#$bindsymlang --locked XF86AudioPlay exec playerctl play
+#$bindsymlang --locked XF86AudioPause exec playerctl pause
+$bindsymlang --locked --release XF86AudioPlay exec playerctl play-pause
+$bindsymlang --locked --release XF86AudioNext exec playerctl next
+$bindsymlang --locked --release XF86AudioPrev exec playerctl previous
+
+# Screen brightness controls
+$bindsymlang --locked XF86MonBrightnessUp exec "light -A 10; notify-send 'brightness up'"
+$bindsymlang --locked XF86MonBrightnessDown exec "light -U 10; notify-send 'brightness down'"
+
+### Input configuration
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+input type:keyboard {
+	xkb_layout us,ru
+	xkb_variant ,winkeys
+	xkb_options grp:alt_shift_toggle
+}
+
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+### Key bindings
+#
+# Basics:
+#
+# Start a terminal
+$bindsymlang $mod+Return exec $term
+
+# Start file manager
+#$bindsymlang $mod+e exec pcmanfm
+
+# Kill focused window
+$bindsymlang $mod+q kill
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Reload the configuration file
+$bindsymlang $mod+Shift+r reload
+
+# Disable the laptop screen when the lid is closed.
+bindswitch --reload --locked lid:on output eDP-1 disable
+bindswitch --reload --locked lid:off output eDP-1 enable
+
+# Exit sway (logs you out of your Wayland session)
+$bindsymlang $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+#
+# Moving around:
+#
+# Move your focus around
+$bindsymlang $mod+$left focus left
+$bindsymlang $mod+$down focus down
+$bindsymlang $mod+$up focus up
+$bindsymlang $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+$bindsymlang $mod+Left focus left
+$bindsymlang $mod+Down focus down
+$bindsymlang $mod+Up focus up
+$bindsymlang $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+$bindsymlang $mod+Shift+$left move left
+$bindsymlang $mod+Shift+$down move down
+$bindsymlang $mod+Shift+$up move up
+$bindsymlang $mod+Shift+$right move right
+# Ditto, with arrow keys
+$bindsymlang $mod+Shift+Left move left
+$bindsymlang $mod+Shift+Down move down
+$bindsymlang $mod+Shift+Up move up
+$bindsymlang $mod+Shift+Right move right
+
+#
+# Workspaces:
+#
+# Switch to workspace
+$bindsymlang $mod+1 workspace number 1
+$bindsymlang $mod+2 workspace number 2
+$bindsymlang $mod+3 workspace number 3
+$bindsymlang $mod+4 workspace number 4
+$bindsymlang $mod+5 workspace number 5
+$bindsymlang $mod+6 workspace number 6
+$bindsymlang $mod+7 workspace number 7
+$bindsymlang $mod+8 workspace number 8
+$bindsymlang $mod+9 workspace number 9
+$bindsymlang $mod+0 workspace number 10
+# Move focused container to workspace
+$bindsymlang $mod+Shift+1 move container to workspace number 1
+$bindsymlang $mod+Shift+2 move container to workspace number 2
+$bindsymlang $mod+Shift+3 move container to workspace number 3
+$bindsymlang $mod+Shift+4 move container to workspace number 4
+$bindsymlang $mod+Shift+5 move container to workspace number 5
+$bindsymlang $mod+Shift+6 move container to workspace number 6
+$bindsymlang $mod+Shift+7 move container to workspace number 7
+$bindsymlang $mod+Shift+8 move container to workspace number 8
+$bindsymlang $mod+Shift+9 move container to workspace number 9
+$bindsymlang $mod+Shift+0 move container to workspace number 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+#
+# Layout stuff:
+#
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+$bindsymlang $mod+b splith
+$bindsymlang $mod+v splitv
+
+# Switch the current container between different layout styles
+$bindsymlang $mod+s layout stacking
+$bindsymlang $mod+w layout tabbed
+$bindsymlang $mod+e layout toggle split
+
+# Make the current focus fullscreen
+$bindsymlang $mod+f fullscreen
+# Make the current container fullscreen
+$bindsymlang $mod+Shift+f focus parent; fullscreen; focus child
+
+# Toggle the current focus between tiling and floating mode
+$bindsymlang $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+$bindsymlang $mod+space focus mode_toggle
+
+# Move focus to the parent container
+$bindsymlang $mod+a focus parent
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+$bindsymlang $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+$bindsymlang $mod+minus scratchpad show
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    $bindsymlang $left resize shrink width 20px
+    $bindsymlang $down resize grow height 20px
+    $bindsymlang $up resize shrink height 20px
+    $bindsymlang $right resize grow width 20px
+
+    # Ditto, with arrow keys
+    $bindsymlang Left resize shrink width 20px
+    $bindsymlang Down resize grow height 20px
+    $bindsymlang Up resize shrink height 20px
+    $bindsymlang Right resize grow width 20px
+
+    # Return to default mode
+    $bindsymlang Return mode "default"
+    $bindsymlang Escape mode "default"
+    $bindsymlang $mod+r mode "default"
+}
+$bindsymlang $mod+r mode "resize"
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+
+bar {
+	swaybar_command waybar 
+}
+#bar {
+#    position top
+#
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#    # The default just shows the current date and time.
+#    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+#
+#    colors {
+#        statusline #ffffff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
+#    }
+#}
+
+### Window rules
+for_window [title=".*"] opacity 0.95
+for_window [title=".*YouTube.*"] opacity 1
+for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
+for_window [window_role = "pop-up"] floating enable
+for_window [window_role = "bubble"] floating enable
+for_window [window_role = "dialog"] floating enable
+for_window [window_type = "dialog"] floating enable
+for_window [window_role = "task_dialog"] floating enable
+for_window [window_type = "menu"] floating enable
+for_window [app_id = "floating"] floating enable
+for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
+for_window [class = "(?i)pinentry"] floating enable
+for_window [app_id = "Yad"] floating enable
+for_window [app_id = "yad"] floating enable
+for_window [title = ".*kdbx - KeePass"] floating enable, resize set 1276px 814px
+for_window [class = "KeePass2"] floating enable
+for_window [class = "KeyStore Explorer"] floating enable
+for_window [app_id = "virt-manager"] floating enable
+for_window [app_id = "xfce-polkit"] floating enable
+for_window [instance = "origin.exe"] floating enable
+for_window [title = "About Mozilla Firefox"] floating enable
+for_window [window_role = "About"] floating enable
+# Kill Firefox sharing indicator. It opens as an own container. Does not kill functionality
+for_window [title = "Firefox - Sharing Indicator"] kill
+for_window [title = "Firefox — Sharing Indicator"] kill
+for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
+for_window [app_id = "pavucontrol"] floating enable
+for_window [app_id = "com.github.wwmm.easyeffects"] floating enable
+for_window [app_id = "blueberry.py"] floating enable
+#for_window [title = "Thunderbird Preferences"] floating enable
+#for_window [name = "*Reminder"] floating enable
+for_window [title = "Manage KeeAgent.*"] floating enable
+for_window [title = "Page Info - .*"] floating enable
+for_window [class = "ConkyKeyboard"] floating enable
+for_window [class = "Gufw.py"] floating enable
+for_window [app_id = "keepassxc"] floating enable, resize set 1276px 814px
+for_window [title = "^Open File$"] floating enable
+for_window [class = "^zoom$"] floating enable
+for_window [app_id = "avizo-service"] border pixel 0, sticky toggle
+no_focus [app_id="avizo-service"]
+for_window [window_role = "GtkFileChooserDialog"] resize set 590 340
+for_window [window_role = "GtkFiileChooserDialog"] move position center
+for_window [app_id = "tlp-ui"] floating enable
+for_window [title = "mpvfloat"] floating enable
+for_window [title = ".*Kee - Mozilla Firefox"] floating enable
+for_window [app_id = "nm-openconnect-auth-dialog"] floating enable
+for_window [class = "davmail-DavGateway"] floating enable
+for_window [title = "Open Database File"] floating enable
+for_window [app_id = "evolution-alarm-notify"] floating enable
+for_window [app_id = "org.gnome.Calculator"] floating enable
+for_window [title = "TeamSpeak 3"] floating enable
+for_window [app_id="(?i)Thunderbird" title=".*Reminder"] floating enable
+for_window [class = "ATLauncher"] floating enable
+for_window [app_id="pamac-manager"] floating enable
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [title="nmtui"] floating enable
+for_window [title="Save File"] floating enable
+for_window [app_id="wdisplays"] floating enable
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
+for_window [app_id = "qt5ct"] floating enable
+for_window [app_id = "gnome-tweaks"] floating enable
+for_window [class = "Bluetooth-sendto" instance = "bluetooth-sendto"] floating enable
+for_window [window_role = "Preferences"] floating enable
+for_window [title = "Picture in picture"] floating enable, sticky enable
+#for_window [app_id = "flameshot"] floating enable
+for_window [title = "Firefox - Choose User Profile" ] floating enable
+for_window [class = "yad"] floating enable
+for_window [app_id = "wdisplays"] resize set width 1150px height 480px
+for_window [app_id = "nwg-look"] floating enable, resize set width 580px height 480px
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks|nwg-shell-config)"] floating enable
+for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
+for_window [class="(?i)(?:lxappearance)"] floating enable
+for_window [app_id="(?i)(?:firefox|chromium)"] border none
+for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
+
+# Steam
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+
+### Autostart
+# Force wayland
+#exec --no-startup-id xrandr --output XWAYLAND1 --primary
+#exec --no-startup-id systemcl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+#exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+#exec --no-startup-id ~/scripts/repair_portals.sh
+
+# Force wayland
+exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null
+exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SSH_AUTH_SOCK SWAYSOCK
+exec --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY DISPLAY SSH_AUTH_SOCK SWAYSOCK
+exec --no-startup-id systemctl --user start sway-session.target
+     
+exec /usr/share/sway/scripts/inactive-windows-transparency.py --opacity 0.90
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id clipit
+#exec --no-startup-id pipewire
+exec --no-startup-id easyeffects --gapplication-service
+exec nm-applet --indicator
+exec_always --no-startup-id libinput-gestures-setup start
+exec_always --no-startup-id $HOME/scripts/import-gtk
+
+include /etc/sway/config.d*
