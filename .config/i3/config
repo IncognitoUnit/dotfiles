@@ -89,7 +89,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # Start file manager
-bindsym $mod+E exec pcmanfm
+#bindsym $mod+E exec pcmanfm
 
 # kill focused window
 bindsym $mod+q kill
@@ -205,89 +205,33 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [class="firefox"] $ws1
 
 ### Open specific applications in floating mode
-for_window [window_role = "pop-up"] floating enable
-for_window [window_role = "bubble"] floating enable
-for_window [window_role = "dialog"] floating enable
-for_window [window_type = "dialog"] floating enable
-for_window [window_role = "task_dialog"] floating enable
-for_window [window_type = "menu"] floating enable
-for_window [app_id = "floating"] floating enable
-for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
-for_window [class = "(?i)pinentry"] floating enable
-for_window [app_id = "Yad"] floating enable
-for_window [app_id = "yad"] floating enable
-for_window [title = ".*kdbx - KeePass"] floating enable, resize set 1276px 814px
-for_window [class = "KeePass2"] floating enable
-for_window [class = "KeyStore Explorer"] floating enable
-for_window [app_id = "virt-manager"] floating enable
-for_window [app_id = "xfce-polkit"] floating enable
-for_window [instance = "origin.exe"] floating enable
-for_window [title = "About Mozilla Firefox"] floating enable
-for_window [window_role = "About"] floating enable
-# Kill Firefox sharing indicator. It opens as an own container. Does not kill functionality
-for_window [title = "Firefox - Sharing Indicator"] kill
-for_window [title = "Firefox — Sharing Indicator"] kill
-for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
-for_window [app_id = "pavucontrol"] floating enable
-for_window [app_id = "blueberry.py"] floating enable
-#for_window [title = "Thunderbird Preferences"] floating enable
-#for_window [name = "*Reminder"] floating enable
-for_window [title = "Manage KeeAgent.*"] floating enable
-for_window [title = "Page Info - .*"] floating enable
-for_window [class = "ConkyKeyboard"] floating enable
-for_window [class = "Gufw.py"] floating enable
-for_window [app_id = "keepassxc"] floating enable, resize set 1276px 814px
-for_window [title = "^Open File$"] floating enable
-for_window [class = "^zoom$"] floating enable
-for_window [app_id = "avizo-service"] border pixel 0, sticky toggle
-no_focus [app_id="avizo-service"]
-for_window [window_role = "GtkFileChooserDialog"] resize set 590 340
-for_window [window_role = "GtkFiileChooserDialog"] move position center
-for_window [app_id = "tlp-ui"] floating enable
-for_window [title = "mpvfloat"] floating enable
-for_window [title = ".*Kee - Mozilla Firefox"] floating enable
-for_window [app_id = "nm-openconnect-auth-dialog"] floating enable
-for_window [class = "davmail-DavGateway"] floating enable
-for_window [title = "Open Database File"] floating enable
-for_window [app_id = "evolution-alarm-notify"] floating enable
-for_window [app_id = "org.gnome.Calculator"] floating enable
-for_window [title = "TeamSpeak 3"] floating enable
-for_window [app_id="(?i)Thunderbird" title=".*Reminder"] floating enable
-for_window [class = "ATLauncher"] floating enable
-for_window [app_id="pamac-manager"] floating enable
-for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [title="nmtui"] floating enable
-for_window [title="Save File"] floating enable
-for_window [app_id="wdisplays"] floating enable
-for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
-for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
-for_window [app_id = "qt5ct"] floating enable
-for_window [app_id = "gnome-tweaks"] floating enable
-for_window [class = "Bluetooth-sendto" instance = "bluetooth-sendto"] floating enable
-for_window [window_role = "Preferences"] floating enable
-for_window [title = "Picture in picture"] floating enable, sticky enable
-for_window [app_id = "flameshot"] floating enable
-for_window [title = "Firefox - Choose User Profile" ] floating enable
-for_window [class = "yad"] floating enable
-for_window [app_id = "wdisplays"] resize set width 1150px height 480px
-for_window [app_id = "nwg-look"] floating enable, resize set width 580px height 480px
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks|nwg-shell-config)"] floating enable
-for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
-for_window [class="(?i)(?:lxappearance)"] floating enable
-for_window [app_id="(?i)(?:firefox|chromium)"] border none
-for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
-# Steam
-for_window [class="^Steam$" title="^Friends$"] floating enable
-for_window [class="^Steam$" title="Steam - News"] floating enable
-for_window [class="^Steam$" title=".* - Chat"] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"] floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="calamares"] floating enable border normal
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro-hello"] floating enable
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Oblogout"] fullscreen enable
+for_window [class="octopi"] floating enable
+for_window [title="About Pale Moon"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Skype"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+for_window [class="Steam" title="Steam - News"] floating enable border normal
+for_window [class="Steam" title="Friends List"] floating enable border normal
 
 # next/previous workspace
 bindsym $mod+Tab workspace next
@@ -406,6 +350,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 #exec --no-startup-id pipewire
+exec --no-startup-id nitrogen --restore;
 exec_always --no-startup-id libinput-gestures-setup start
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id ~/.config/polybar/launch.sh

@@ -63,3 +63,4 @@ font/ttf=org.xfce.mousepad.desktop;
 x-scheme-handler/mid=userapp-Thunderbird-21C001.desktop;
 x-scheme-handler/webcal=userapp-Thunderbird-OLY101.desktop;
 x-scheme-handler/webcals=userapp-Thunderbird-OLY101.desktop;
+inode/directory=xarchiver.desktop;
