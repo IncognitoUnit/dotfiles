@@ -7,3 +7,5 @@ alias ll="ls -alh"
 alias la="ls -a"
 
 set fish_greeting
+
+cat ~/.cache/wal/sequences

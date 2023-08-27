@@ -70,6 +70,7 @@ $bindsymlang $mod+Shift+d exec rofi -show drun -lines 15 -theme "Arc-Dark" -show
 # Screenshots
 #$bindsymlang $mod+Print exec --no-startup-id flameshot gui
 #$bindsymlang $mod+Print exec --no-startup-id swappy
+$bindsymlang Print exec --no-startup-id exec grim - | wl-copy
 $bindsymlang $mod+Print exec --no-startup-id grim -g "$(slurp)" - | swappy -f -
 
 ### Output configuration
@@ -336,7 +337,6 @@ for_window [title = "About Mozilla Firefox"] floating enable
 for_window [window_role = "About"] floating enable
 # Kill Firefox sharing indicator. It opens as an own container. Does not kill functionality
 for_window [title = "Firefox - Sharing Indicator"] kill
-for_window [title = "Firefox — Sharing Indicator"] kill
 for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
 for_window [app_id = "pavucontrol"] floating enable
 for_window [app_id = "com.github.wwmm.easyeffects"] floating enable
@@ -385,7 +385,7 @@ for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 p
 for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks|nwg-shell-config)"] floating enable
 for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
 for_window [class="(?i)(?:lxappearance)"] floating enable
-for_window [app_id="(?i)(?:firefox|chromium)"] border none
+#for_window [app_id="(?i)(?:firefox|chromium)"] border none
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
 for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
 
