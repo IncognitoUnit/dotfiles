@@ -30,6 +30,7 @@ application/x-extension-ics=userapp-Thunderbird-OLY101.desktop
 x-scheme-handler/webcals=userapp-Thunderbird-OLY101.desktop
 x-scheme-handler/discord-712264497787568171=discord-712264497787568171.desktop
 x-scheme-handler/clickup=ClickUp.desktop
+x-scheme-handler/postman=Postman.desktop
 
 [Added Associations]
 x-scheme-handler/http=chromium.desktop;

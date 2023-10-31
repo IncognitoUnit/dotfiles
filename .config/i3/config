@@ -347,9 +347,6 @@ mode "$mode_gaps_outer" {
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id picom -f
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id clipit
-#exec --no-startup-id pipewire
 exec --no-startup-id nitrogen --restore;
 exec_always --no-startup-id libinput-gestures-setup start
 exec_always --no-startup-id fix_xcursor

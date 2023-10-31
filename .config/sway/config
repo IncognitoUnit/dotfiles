@@ -411,8 +411,7 @@ exec --no-startup-id ~/scripts/repair_portals
      
 exec /usr/share/sway/scripts/inactive-windows-transparency.py --opacity 0.90
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id xfce4-power-manager
 exec --no-startup-id easyeffects --gapplication-service
 exec nm-applet --indicator
 exec_always --no-startup-id libinput-gestures-setup start
-exec_always --no-startup-id $HOME/scripts/import-gtk
+exec_always --no-startup-id $HOME/scripts/import_gtk
