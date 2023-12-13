@@ -3,7 +3,10 @@
 
 pidof dunst && killall dunst
 
+OG_DUNST_FILE=~/.config/dunst/dunstrc-og
 DUNST_FILE=~/.config/dunst/dunstrc
+
+cp $OG_DUNST_FILE $DUNST_FILE
 
 # update dunst based on pywal colors.
 sed -i '/background = /s/.*/    background = "'$color0'"/' $DUNST_FILE

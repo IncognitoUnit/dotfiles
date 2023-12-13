@@ -4,6 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+include /etc/sway/config.d/*
+
 ### Looks
 
 # Gaps
@@ -406,12 +408,12 @@ for_window [title="^Steam Keyboard$"] floating enable
 exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null
 exec --no-startup-id dbus-activation-update-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec --no-startup-id ~/scripts/repair_portals
+#exec --no-startup-id ~/scripts/repair_portals
 #exec --no-startup-id systemctl --user start sway-session.target
-     
+
 exec /usr/share/sway/scripts/inactive-windows-transparency.py --opacity 0.90
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id easyeffects --gapplication-service
 exec nm-applet --indicator
 exec_always --no-startup-id libinput-gestures-setup start
-exec_always --no-startup-id $HOME/scripts/import_gtk
+exec_always --no-startup-id ~/scripts/import_gtk
