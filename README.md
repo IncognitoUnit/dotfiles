@@ -2,7 +2,7 @@
 
 ```sh
 rofi
-alacritty
+kitty
 fish
 ttf-font-awesome
 libinput-gestures
