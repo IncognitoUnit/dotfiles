@@ -61,13 +61,17 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term kitty
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu rofi - | xargs swaymsg exec --
-# Start your launcher
-$bindsymlang $mod+d exec rofi -show run -lines 15 -theme "Arc-Dark"
-$bindsymlang $mod+Shift+d exec rofi -show drun -lines 15 -theme "Arc-Dark" -show-icons
+
+# Launcher
+$bindsymlang $mod+d exec ~/.config/rofi/scripts/launcher
+
+$bindsymlang $mod+x exec ~/.config/rofi/scripts/powermenu
+$bindsymlang $mod+Shift+x exec ~/.config/scripts/lock
 
 # Screenshots
 #$bindsymlang $mod+Print exec --no-startup-id flameshot gui
@@ -104,8 +108,6 @@ exec swayidle -w \
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 # Sound
-#exec --no-startup-id start-pulseaudio-x11
-#exec --no-startup-id pa-applet
 $bindsymlang $mod+Ctrl+m exec pavucontrol
 
 # Use pactl to adjust volume in PulseAudio.
@@ -148,6 +150,7 @@ input type:keyboard {
 #
 # Start a terminal
 $bindsymlang $mod+Return exec $term
+$bindsymlang $mod+t exec $term
 
 # Start file manager
 #$bindsymlang $mod+e exec pcmanfm
