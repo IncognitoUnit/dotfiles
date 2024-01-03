@@ -74,10 +74,8 @@ $bindsymlang $mod+x exec ~/.config/rofi/scripts/powermenu
 $bindsymlang $mod+Shift+x exec ~/.config/scripts/lock
 
 # Screenshots
-#$bindsymlang $mod+Print exec --no-startup-id flameshot gui
-#$bindsymlang $mod+Print exec --no-startup-id swappy
-$bindsymlang Print exec --no-startup-id exec grim - | wl-copy
-$bindsymlang $mod+Print exec --no-startup-id grim -g "$(slurp)" - | swappy -f -
+$bindsymlang Print exec --no-startup-id ~/scripts/screenshot --area
+$bindsymlang $mod+Print exec --no-startup-id  ~/scripts/screenshot --now
 
 ### Output configuration
 #
