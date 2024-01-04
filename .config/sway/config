@@ -71,7 +71,8 @@ set $term kitty
 $bindsymlang $mod+d exec ~/.config/rofi/scripts/launcher
 
 $bindsymlang $mod+x exec ~/.config/rofi/scripts/powermenu
-$bindsymlang $mod+Shift+x exec ~/.config/scripts/lock
+$bindsymlang $mod+Shift+x exec ~/scripts/lock
+$bindsymlang $mod+Shift+w exec ~/.config/rofi/scripts/wallpaper
 
 # Screenshots
 $bindsymlang Print exec --no-startup-id ~/scripts/screenshot --area
@@ -97,8 +98,8 @@ output eDP-1 {
 # Example configuration:
 #
 exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000' \
-          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+          timeout 600 'swaylock -f -c 000000' \
+          timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
           before-sleep 'swaylock -f -c 000000'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off

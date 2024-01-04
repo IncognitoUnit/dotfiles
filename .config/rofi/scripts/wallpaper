@@ -35,8 +35,8 @@ elif [[ "$(<~/.cache/wal/mode )" = "light" ]]; then
   wal -i $wallpaper -l --cols16
 fi
 
-pywalfox update
-pywal-discord -t default
-wal-telegram --wal
+pywal-discord -t pywal
+walogram
+systemctl reload --user waybar
 
 . $HOME/.config/mako/update-colors.sh

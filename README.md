@@ -27,6 +27,7 @@ picom
 ```sh
 sway
 swayidle
+swaylock-effects
 swaybg
 waybar
 ```
