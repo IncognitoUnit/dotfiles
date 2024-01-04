@@ -1,18 +1,18 @@
 sort=-time
 layer=overlay
-background-color=#1b1e2589
+background-color=#130f1089
 width=300
 height=110
-border-size=3
-text-color=#c2cdd2
-border-color=#6991B5
-border-radius=10
+border-size=2
+text-color=#dacfdd
+border-color=#698CDA
+border-radius=0
 icons=1
-padding=24
+padding=6
 max-icon-size=64
 default-timeout=5000
 ignore-timeout=1
-font=CartographCF Nerd Font 11
+font=Nerd Font 10
 
 [urgency=high]
 default-timeout=0
