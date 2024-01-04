@@ -35,7 +35,7 @@ elif [[ "$(<~/.cache/wal/mode )" = "light" ]]; then
   wal -i $wallpaper -l --cols16
 fi
 
-pywal-discord -t pywal
+pywal-discord -t default
 walogram
 systemctl reload --user waybar
 
