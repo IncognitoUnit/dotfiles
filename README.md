@@ -13,15 +13,6 @@ qt5ct
 qt6ct
 ```
 
-## i3wm
-
-```sh
-i3wm
-i3lock-color
-polybar
-picom
-```
-
 ## sway
 
 ```sh
