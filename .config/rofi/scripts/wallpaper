@@ -29,14 +29,10 @@ swww img $wallpaper --transition-type grow --transition-fps 60 --transition-dura
 
 sleep 1.25
 
-if [[ "$(<~/.cache/wal/mode )" = "dark" ]]; then
-  wal -i $wallpaper --cols16
-elif [[ "$(<~/.cache/wal/mode )" = "light" ]]; then
-  wal -i $wallpaper -l --cols16
-fi
+wal -i $wallpaper -n
 
 pywal-discord -t default
-walogram
-systemctl reload --user waybar
+walogram -s
 
-. $HOME/.config/mako/update-colors.sh
+. $HOME/.config/mako/update_colors.sh
+. $HOME/.config/spicetify/Themes/Pywal/update_colors.sh

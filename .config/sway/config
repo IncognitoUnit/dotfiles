@@ -89,7 +89,6 @@ $bindsymlang $mod+Print exec --no-startup-id  ~/scripts/screenshot --now
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 output eDP-1 {
-	background ~/wallpaper.png fill
 	resolution 1920x1080
 }
 
@@ -406,6 +405,7 @@ for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Require
 for_window [title="^Steam Keyboard$"] floating enable
 
 ### Autostart
+exec ~/scripts/init_wallpaper
 # Force wayland
 exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id hash dbus-update-activation-environment 2>/dev/null
