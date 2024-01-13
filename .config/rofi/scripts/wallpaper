@@ -31,8 +31,10 @@ sleep 1.25
 
 wal -i $wallpaper -n
 
+pywalfox update
 pywal-discord -t default
 walogram -s
+mv $HOME/.cache/wal/colors-speedcrunch.json $HOME/.local/share/SpeedCrunch/color-schemes/pywal.json
 
 . $HOME/.config/mako/update_colors.sh
 . $HOME/.config/spicetify/Themes/Pywal/update_colors.sh
