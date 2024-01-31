@@ -30,21 +30,6 @@ client.urgent 			$foreground $background $color7 	$foreground $foreground
 #client.unfocused          $background  $background  $foreground  $color3      $backgroud
 #client.urgent             $background  $background  $color7      $foreground  $foreground
 
-# Color pallete
-#set $bg-color				#2f343f
-#set $bg-inactive-color		#1f242f
-#set $text-color				#f3f4f5
-#set $text-inactive-color	#676e7d
-#set $bg-urgent-color		#e53935
-#set $indicator-color		#7777ff
-
-# Window colors
-# class					border				background			text					indicator
-#client.focused			$bg-color			$bg-color			$text-color				$indicator-color
-#client.unfocused		$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
-#client.focused_inactive	$bg-inactive-color	$bg-inactive-color	$text-inactive-color	$indicator-color
-#client.urgent			$bg-urgent-color	$bg-urgent-color	$text-color				$indicator-color
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -69,7 +54,6 @@ set $term kitty
 
 # Launcher
 $bindsymlang $mod+d exec ~/.config/rofi/scripts/launcher
-
 $bindsymlang $mod+x exec ~/.config/rofi/scripts/powermenu
 $bindsymlang $mod+Shift+x exec ~/scripts/lock
 $bindsymlang $mod+Shift+w exec ~/.config/rofi/scripts/wallpaper
@@ -115,15 +99,13 @@ $bindsymlang --locked --release XF86AudioMute exec --no-startup-id pactl set-sin
 $bindsymlang --locked --release XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Media player controls
-#$bindsymlang --locked XF86AudioPlay exec playerctl play
-#$bindsymlang --locked XF86AudioPause exec playerctl pause
 $bindsymlang --locked --release XF86AudioPlay exec playerctl play-pause
 $bindsymlang --locked --release XF86AudioNext exec playerctl next
 $bindsymlang --locked --release XF86AudioPrev exec playerctl previous
 
 # Screen brightness controls
-$bindsymlang --locked XF86MonBrightnessUp exec "light -A 10; notify-send 'brightness up'"
-$bindsymlang --locked XF86MonBrightnessDown exec "light -U 10; notify-send 'brightness down'"
+$bindsymlang --locked --release XF86MonBrightnessUp exec "light -A 10; notify-send 'brightness up'"
+$bindsymlang --locked --release XF86MonBrightnessDown exec "light -U 10; notify-send 'brightness down'"
 
 ### Input configuration
 
@@ -353,21 +335,14 @@ for_window [class = "Gufw.py"] floating enable
 for_window [app_id = "keepassxc"] floating enable, resize set 1276px 814px
 for_window [title = "^Open File$"] floating enable
 for_window [class = "^zoom$"] floating enable
-for_window [app_id = "avizo-service"] border pixel 0, sticky toggle
-no_focus [app_id="avizo-service"]
 for_window [window_role = "GtkFileChooserDialog"] resize set 590 340
 for_window [window_role = "GtkFiileChooserDialog"] move position center
 for_window [app_id = "tlp-ui"] floating enable
-for_window [title = "mpvfloat"] floating enable
 for_window [title = ".*Kee - Mozilla Firefox"] floating enable
 for_window [app_id = "nm-openconnect-auth-dialog"] floating enable
 for_window [class = "davmail-DavGateway"] floating enable
 for_window [title = "Open Database File"] floating enable
-for_window [app_id = "evolution-alarm-notify"] floating enable
-for_window [app_id = "org.gnome.Calculator"] floating enable
-for_window [title = "TeamSpeak 3"] floating enable
 for_window [app_id="(?i)Thunderbird" title=".*Reminder"] floating enable
-for_window [class = "ATLauncher"] floating enable
 for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
 for_window [title="nmtui"] floating enable
 for_window [title="Save File"] floating enable
@@ -375,7 +350,6 @@ for_window [app_id="wdisplays"] floating enable
 for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
 for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
 for_window [app_id = "qt5ct"] floating enable
-for_window [app_id = "gnome-tweaks"] floating enable
 for_window [class = "Bluetooth-sendto" instance = "bluetooth-sendto"] floating enable
 for_window [window_role = "Preferences"] floating enable
 for_window [title = "Picture in picture"] floating enable, sticky enable
@@ -383,12 +357,10 @@ for_window [title = "Picture in picture"] floating enable, sticky enable
 for_window [title = "Firefox - Choose User Profile" ] floating enable
 for_window [class = "yad"] floating enable
 for_window [app_id = "wdisplays"] resize set width 1150px height 480px
-for_window [app_id = "nwg-look"] floating enable, resize set width 580px height 480px
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks|nwg-shell-config)"] floating enable
-for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor)"] floating enable
 for_window [class="(?i)(?:lxappearance)"] floating enable
-#for_window [app_id="(?i)(?:firefox|chromium)"] border none
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
 for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
 
