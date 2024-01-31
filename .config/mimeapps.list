@@ -65,3 +65,4 @@ x-scheme-handler/webcals=userapp-Thunderbird-OLY101.desktop;
 inode/directory=xarchiver.desktop;
 image/vnd.microsoft.icon=org.xfce.mousepad.desktop;
 application/x-spss-sav=xarchiver.desktop;
+application/vnd.oasis.opendocument.graphics=chromium.desktop;
