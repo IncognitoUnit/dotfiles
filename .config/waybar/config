@@ -6,11 +6,11 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-    	"tray",
-    	"idle_inhibitor",
+    	//"idle_inhibitor",
     	//"wlr/workspaces",
     	//"sway/workspaces",
     	"hyprland/workspaces",
+    	"tray",
     ],
     "modules-center": [
 		"clock"
@@ -20,8 +20,8 @@
     	"disk",
     	"cpu",
     	"memory",
-    	"battery",
-    	"sway/language"
+    	"battery"
+    	//"sway/language"
     ],
     // Modules configuration
     // "sway/workspaces": {

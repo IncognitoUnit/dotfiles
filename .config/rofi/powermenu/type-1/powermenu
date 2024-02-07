@@ -61,7 +61,7 @@ run_cmd() {
 		elif [[ $1 == '--reboot' ]]; then
 			systemctl reboot
 		elif [[ $1 == '--lock' ]]; then
-			$HOME/scripts/lock
+			$HOME/.config/scripts/lock
 		elif [[ $1 == '--suspend' ]]; then
 			mpc -q pause
 			amixer set Master mute
@@ -84,7 +84,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		$HOME/scripts/lock
+		$HOME/.config/scripts/lock
         ;;
     $suspend)
 		run_cmd --suspend
