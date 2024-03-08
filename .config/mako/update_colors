@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 MAKOCONFIG="$HOME/.config/mako/config"
 COLORS="$HOME/.cache/wal/colors"
@@ -27,17 +27,18 @@ background-color=$COLOR0
 text-color=$COLOR1
 
 [urgency=low]
-border-color=$COLOR2
-text-color=$COLOR6
+border-color=$COLOR6
+text-color=$COLOR5
+default-timeout=3000
 
 [urgency=normal]
-border-color=$COLOR1
+border-color=$COLOR6
 text-color=$COLOR5
 default-timeout=10000
 ignore-timeout=1
 
 [urgency=high]
-border-color=$COLOR1
+border-color=$COLOR2
 text-color=$COLOR6
 default-timeout=0
 ignore-timeout=1

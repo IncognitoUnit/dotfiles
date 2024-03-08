@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #                _ _                              
 # __      ____ _| | |_ __   __ _ _ __   ___ _ __  
 # \ \ /\ / / _` | | | '_ \ / _` | '_ \ / _ \ '__| 
@@ -12,7 +12,7 @@
 # Cache file for holding the current wallpaper
 cache_file="$HOME/.cache/current_wallpaper"
 rasi_file="$HOME/.cache/current_wallpaper.rasi"
-wallpaper_dir="$HOME/Wallpapers"
+wallpaper_dir="$HOME/Pictures/Wallpapers"
 dir="$HOME/.config/rofi/launchers/type-1"
 theme="style-wallpaper"
 
@@ -93,7 +93,7 @@ swww img $wallpaper \
     --transition-bezier .43,1.19,1,.4 \
     --transition-fps=60 \
     --transition-type=$transition_type \
-    --transition-duration=0.7 \
+    --transition-duration=1.0 \
     --transition-pos "$( hyprctl cursorpos )"
 
 # ----------------------------------------------------- 
@@ -108,7 +108,6 @@ pywal-discord -t default
 # ----------------------------------------------------- 
 # Send notification
 # ----------------------------------------------------- 
-#sleep 1
-notify-send "Colors and Wallpaper updated" "with image $newwall"
+notify-send -u low "Colors and Wallpaper updated" "with image $newwall"
 
 echo "DONE!"

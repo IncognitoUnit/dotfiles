@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+out=$(hyprctl activewindow -j)
+address=$(echo $out | jq -r '.address')
+groupSize=$(echo $out | jq -r '.grouped | length')
+index=$(echo $out | jq -r ".grouped | index(\"${address}\")")
+
+if [[ "$groupSize" > 0 ]]; then
+    IN_GROUP=1
+else
+    IN_GROUP=0
+fi
+
+if [[ "$1" == "l" ]]; then
+    if [[ "$index" != 0 && "$IN_GROUP" == 1 ]]; then
+        hyprctl dispatch changegroupactive b
+    else
+        hyprctl dispatch movefocus l
+    fi
+else
+    if ((index != groupSize - 1)) && [[ "$IN_GROUP" == 1 ]]; then
+        hyprctl dispatch changegroupactive f
+    else
+        hyprctl dispatch movefocus r
+    fi
+fi

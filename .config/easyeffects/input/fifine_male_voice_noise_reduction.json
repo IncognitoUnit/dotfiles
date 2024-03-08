@@ -1,5 +1,14 @@
 {
     "input": {
+        "autogain#0": {
+            "bypass": false,
+            "input-gain": 0.0,
+            "maximum-history": 10,
+            "output-gain": 0.0,
+            "reference": "Geometric Mean (MSI)",
+            "silence-threshold": -50.0,
+            "target": -30.0
+        },
         "blocklist": [],
         "compressor#0": {
             "attack": 20.0,
@@ -53,7 +62,7 @@
             "balance": 0.0,
             "bypass": false,
             "equal-mode": "IIR",
-            "frequency": 100.0,
+            "frequency": 120.0,
             "gain": 0.0,
             "input-gain": 0.0,
             "mode": "RLC (BT)",
@@ -119,6 +128,7 @@
             "compressor#0",
             "filter#0",
             "limiter#0",
+            "autogain#0",
             "rnnoise#0"
         ],
         "rnnoise#0": {
@@ -126,9 +136,9 @@
             "enable-vad": true,
             "input-gain": 0.0,
             "model-path": "",
-            "output-gain": 6.0,
-            "release": 50.0,
-            "vad-thres": 1.0,
+            "output-gain": 0.0,
+            "release": 100.0,
+            "vad-thres": 20.0,
             "wet": 0.0
         }
     }

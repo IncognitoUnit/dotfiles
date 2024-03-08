@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+notify-send -u low "Notification Title" "Notification Body"
+notify-send -u normal "Notification Title" "Notification Body"
+notify-send -u critical "Notification Title" "Notification Body"
